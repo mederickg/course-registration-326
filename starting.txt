@@ -1,8 +1,5 @@
 Mederick Grivel
 Sean Tran
-<<<<<<< HEAD
-Noah Ramey
-=======
 Nadiyah Williams
 Adam Isaacs 
->>>>>>> 486b073b2ffb70465ed2c4ab1b8fbfe3df33dc6d
+Noah Ramey
