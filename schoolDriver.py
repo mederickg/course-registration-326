@@ -23,10 +23,6 @@ class School:
     def print_transcript(Student= None):
         """"""
         pass
-    
-    if __name__ == "__main__":
-        
-        pass
         
     def student_stats(year):
         """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
@@ -49,18 +45,36 @@ class Course:
 class Section:
     
     def __init__(self,instructor,time):
+        """initializes a section object
+
+        Args:
+            instructor (Instructor): _description_
+            time (str): _description_
+        """
         self.instructor= instructor
         self.time = time
         
 class Person:
     
     def __init__(self,name,age):
+        """initializes a person object
+
+        Args:
+            name (str): name of person
+            age (int): person's age
+        """
         self.name=name
         self.age=age
         
 class Student(Person):
     
     def __init__(self,year,schedule):
+        """initializes a student object
+
+        Args:
+        year (int): year that the student is in
+        schedule (str): path to a file containing student schedule
+        """
        super.__init__(self)
        self.year=year
         
@@ -77,6 +91,11 @@ class Instructor(Person):
     #courses - list of courses they teach
     
     def __init__(self,courses):
+        """initializes Intructor object
+
+        Args:
+            courses (str): path to a file containing courses
+        """
         super.__init__(self)
         self.courses=courses
         
@@ -88,6 +107,6 @@ class Instructor(Person):
         """
         pass
                
-
-        
+if __name__ == "__main__":
+        pass     
         
