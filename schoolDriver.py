@@ -1,14 +1,25 @@
 class School:
+    """School class is the class that runs the functionalities of the school using the classes and functions of students and faculty.
+    courses. 
     
+    Attributes: students(list): list of students in the school 
+                courses(list): list of courses offered
+                faculty(list): list of schools faculty members
+                 
+    """
     def __init__(self,students,courses,faculty):
+        """init method defines the attributes based on user input
+        
+            Side Effects: school attributes instantiated
+        """
         self.students= students
         self.courses= courses
         self.faculty=faculty
     
     def add_course():
-        """adds a course to the school.
+        """adds a course to the school from argparser perspective
         
-        maybe we use the argparser here"""
+        Side effects: courses attribute is added to"""
         pass
         
     def addStudents(filepath):
@@ -20,20 +31,25 @@ class School:
         #with open(filepath,'r',encoding='utf-8') as file:
         #    for line in file:
         
-    def print_transcript(Student= None):
-        """"""
+    def print_transcript(Student = None):
+        """prints a transcript of either  a given student, or the raw formatting of a blank transcript
+        
+            Returns: String representation of a transcript for a student"""
+        pass
+    
+    if __name__ == "__main__":
+        """driver of the school class, works to build a school, allow a user to choose their perspective of the school, and work with the commands
+        they would have access to"""
         pass
         
     def student_stats(year):
-        """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
-        
-        
-        maybe gets gpa breakdown for all students in a certain class
-        
-        interesting spot for list comprehensions maybe"""
+        """provides a statistical representation of the student gpa of a certain class of students."""
         pass
     def class_rankings():
-        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
+        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending
+        
+        Returns: sorted list of students in descending order based on gpa"""
+        pass
         
 class Course:
     
@@ -75,8 +91,8 @@ class Student(Person):
         year (int): year that the student is in
         schedule (str): path to a file containing student schedule
         """
-       super.__init__(self)
-       self.year=year
+        super.__init__()
+        self.year=year
         
     def add_class():
         """adds a class to a students schedule if their schedule allows for it AND they meet prerequisites"""
