@@ -106,6 +106,12 @@ class Section:
         self.time = time
         
 class Person:
+    """A class that creates a person with a name and age
+    
+    Attributes:
+        name (str): Person's name
+        age (int): Person's age
+    """
     
     def __init__(self,name,age):
         """initializes a person object
@@ -118,6 +124,12 @@ class Person:
         self.age=age
         
 class Student(Person):
+    """A student class that is a subclass of person
+
+    Attributes:
+        year (int): Year of graduation
+        schedule (str): path to a file containing student schedule
+    """
     
     def __init__(self,year,schedule):
         """initializes a student object
@@ -139,13 +151,17 @@ class Student(Person):
             
            
 class Instructor(Person):
-    #courses - list of courses they teach
+    """an instructor class that is a subclass of Person
+
+    Attributes:
+        courses(dict): dictionary of courses
+    """
     
     def __init__(self,courses):
         """initializes Intructor object
 
         Args:
-            courses (str): path to a file containing courses
+            courses (dict): a dictionary of courses
         """
         super.__init__(self)
         self.courses=courses
