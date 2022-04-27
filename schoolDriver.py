@@ -16,13 +16,13 @@ class School:
         self.courses= courses
         self.faculty=faculty
     
-    def add_course():
+    def add_course(self):
         """adds a course to the school from argparser perspective
         
         Side effects: courses attribute is added to"""
         pass
         
-    def addStudents(filepath):
+    def addStudents(self, filepath):
         """Reads in a formatted file of students, constructs them, and adds them to the students at the school
         
         regex + reading in  from file"""
@@ -31,7 +31,7 @@ class School:
         #with open(filepath,'r',encoding='utf-8') as file:
         #    for line in file:
         
-    def print_transcript(Student = None):
+    def print_transcript(self, Student = None):
         """prints a transcript of either  a given student, or the raw formatting of a blank transcript
         
             Returns: String representation of a transcript for a student"""
@@ -42,10 +42,10 @@ class School:
         they would have access to"""
         pass
         
-    def student_stats(year):
+    def student_stats(self, year):
         """provides a statistical representation of the student gpa of a certain class of students."""
         pass
-    def class_rankings():
+    def class_rankings(self):
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending
         
         Returns: sorted list of students in descending order based on gpa"""
@@ -141,10 +141,10 @@ class Student(Person):
         super.__init__()
         self.year=year
         
-    def add_class():
+    def add_class(self):
         """adds a class to a students schedule if their schedule allows for it AND they meet prerequisites"""
         pass
-    def drop_class():
+    def drop_class(self):
         """drops a class, updates the student schedule as needed"""
         pass
         
@@ -166,7 +166,7 @@ class Instructor(Person):
         super.__init__(self)
         self.courses=courses
         
-    def give_grade():
+    def give_grade(self):
         """
         Method takes a given student, and assigns them a final grade for a course
         
