@@ -1,3 +1,5 @@
+import re
+
 class School:
     
     def __init__(self,students,courses,faculty):
