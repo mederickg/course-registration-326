@@ -1,0 +1,10 @@
+Prefix,Course number,Section number,Course name,Times,Instructor,Building,Credits needed
+INST,126,101,Ipsom,M W 12:00-13:00,Ipsom,HBK 1401,0
+INST,126,102,Ipsom,T Th 13:00-14:00,Ipsom,ESJ 0201,0
+INST,201,101,Ipsom,M W F 9:00-10:00,Ipsom,TWS 1001,0
+INST,201,102,Ipsom,T Th 14:00-15:00,Ipsom,IRB 3101,0
+INST,326,103,Ipsom,M W F 8:00-9:00,Ipsom,HBK 1402,15
+INST,314,104,Ipsom,M W 14-15:00,Ipsom,ESJ 0202,21
+INST,314,101,Ipsom,T Th 9:00-10:00,Ipsom,TWS 1002,21
+INST,335,101,Ipsom,M W F 15:00-16:00,Ipsom,IRB 3102,30
+INST,335,102,Ipsom,T Th 16:00-17:00,Ipsom,HBK 1403,30
