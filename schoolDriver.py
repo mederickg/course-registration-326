@@ -1,55 +1,53 @@
 class School:
-    """School class is the class that runs the functionalities of the school using the classes and functions of students and faculty.
-    courses. 
     
-    Attributes: students(list): list of students in the school 
-                courses(list): list of courses offered
-                faculty(list): list of schools faculty members
-                 
-    """
     def __init__(self,students,courses,faculty):
-        """init method defines the attributes based on user input
-        
-            Side Effects: school attributes instantiated
-        """
+
         self.students= students
         self.courses= courses
         self.faculty=faculty
     
-    def add_course(self):
-        """adds a course to the school from argparser perspective
+    def add_course(self, course):
+        """adds a course to the school.
         
-        Side effects: courses attribute is added to"""
-        pass
+        maybe we use the argparser here"""
+        self.courses.append(course)
         
-    def addStudents(self, filepath):
+    def addMultipleStudents(self, path):
         """Reads in a formatted file of students, constructs them, and adds them to the students at the school
         
         regex + reading in  from file"""
-        pass
         
-        #with open(filepath,'r',encoding='utf-8') as file:
-        #    for line in file:
-        
-    def print_transcript(self, Student = None):
-        """prints a transcript of either  a given student, or the raw formatting of a blank transcript
-        
-            Returns: String representation of a transcript for a student"""
+        with open(path,'r',encoding='utf-8') as file:
+               #re.search function to find student name, year, and ID
+               #build Student objects for each line in the file
+               #add student objects to self.students
+           for line in file:
+               pattern = r"^(\S+), (\S+), (\d+)$"
+               searched = re.search(pattern, line)
+               self.students.append(Student(searched.group(0), searched.group(1)))
+               pass
+           
+    def addStudent(self, name, age, year, schedule={}):
+        #at some point this function will be able to order the schedule 
+        self.students.append(Student(name, age, year, schedule))
+    
+    def print_grades(self, Student= None):
+        #looks at student grades in each class and prints it
         pass
     
     if __name__ == "__main__":
-        """driver of the school class, works to build a school, allow a user to choose their perspective of the school, and work with the commands
-        they would have access to"""
         pass
         
-    def student_stats(self, year):
-        """provides a statistical representation of the student gpa of a certain class of students."""
+    def student_stats(year):
+        """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
+        maybe gets gpa breakdown for all students in a certain class
+        interesting spot for list comprehensions maybe"""
         pass
-    def class_rankings(self):
-        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending
+    
+    def class_rankings():
+        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
         
-        Returns: sorted list of students in descending order based on gpa"""
-        pass
+        
         
 class Course:
     """ Course class representing a specific course in the school. Contains
