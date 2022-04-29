@@ -1,7 +1,6 @@
 class School:
     
     def __init__(self,students,courses,faculty):
-
         self.students= students
         self.courses= courses
         self.faculty=faculty
@@ -104,74 +103,38 @@ class Section:
         self.time = time
         
 class Person:
-    """A class that creates a person with a name and age
-    
-    Attributes:
-        name (str): Person's name
-        age (int): Person's age
-    """
     
     def __init__(self,name,age):
-        """initializes a person object
-
-        Args:
-            name (str): name of person
-            age (int): person's age
-        """
         self.name=name
         self.age=age
         
 class Student(Person):
-    """A student class that is a subclass of person
-
-    Attributes:
-        year (int): Year of graduation
-        schedule (str): path to a file containing student schedule
-    """
     
     def __init__(self,year,schedule):
-        """initializes a student object
-
-        Args:
-        year (int): year that the student is in
-        schedule (str): path to a file containing student schedule
-        """
-        super.__init__()
-        self.year=year
+       super.__init__(self)
+       self.year=year
         
-    def add_class(self):
+    def add_class():
         """adds a class to a students schedule if their schedule allows for it AND they meet prerequisites"""
         pass
-    def drop_class(self):
+    def drop_class():
         """drops a class, updates the student schedule as needed"""
         pass
         
             
-           
+        
+       
 class Instructor(Person):
-    """an instructor class that is a subclass of Person
-
-    Attributes:
-        courses(dict): dictionary of courses
-    """
+    #courses - list of courses they teach
     
     def __init__(self,courses):
-        """initializes Intructor object
-
-        Args:
-            courses (dict): a dictionary of courses
-        """
         super.__init__(self)
         self.courses=courses
         
-    def give_grade(self):
+    def give_grade():
         """
         Method takes a given student, and assigns them a final grade for a course
         
         Side Effects: impacts the students gpa calculation
         """
         pass
-               
-if __name__ == "__main__":
-        pass     
-        
