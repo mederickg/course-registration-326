@@ -12,7 +12,6 @@ class Register:
     def drop(self, courseName):
         self.schedule = self.schedule.drop([courseName], axis = 0)
         
-    
     def verify_credits():
         pass
     
