@@ -34,3 +34,7 @@ class course_db():
     
     def create_section():
         pass 
+    
+    
+cs1 = Course_db("sample_data.csv")
+print(cs1.courses)
