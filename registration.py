@@ -1,8 +1,10 @@
-import pandas as pd
+import pandas as pd 
 
 class Register:
-    def __init__():
-        pass
+    def __init__(self,transcript,course_db):
+        self.transcript = pd.read_csv(transcript)
+        self.course_db = pd.read_csv(course_db)
+        
     
     def add(): 
         pass
@@ -22,9 +24,10 @@ class Register:
     def can_walk():
         pass 
     
-class Course_db():
-    def __init__(self, path):
-        self.courses = pd.read_csv(path)
+class course_db():
+    
+    def __init__():
+        pass 
     
     def add_courses(self, path): 
         temp = pd.read_csv(path)
