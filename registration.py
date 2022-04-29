@@ -24,10 +24,10 @@ class Register:
     def can_walk():
         pass 
     
-class course_db():
+class Course_db():
     
-    def __init__():
-        pass 
+    def __init__(self, path):
+        self.courses = pd.read_csv(path)
     
     def add_courses(self, path): 
         temp = pd.read_csv(path)
