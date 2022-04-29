@@ -31,10 +31,3 @@ class Course_db():
     def add_courses(self, path): 
         temp = pd.read_csv(path)
         self.courses = pd.concat([self.courses, temp])
-    
-if __name__ == "__main__":
-    cs1 = Course_db("sample_data.csv")
-
-    cs1.add_courses("sample_data_2.csv")
-
-    print(cs1.courses)
