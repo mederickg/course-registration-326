@@ -4,7 +4,7 @@ class Register:
     def __init__(self,transcript,course_db):
         self.transcript = pd.read_csv(transcript)
         self.course_db = pd.read_csv(course_db)
-        
+        self.schedule = pd.DataFrame()
     
     def add(): 
         pass
