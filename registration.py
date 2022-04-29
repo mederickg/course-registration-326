@@ -9,8 +9,9 @@ class Register:
     def add(): 
         pass
     
-    def drop():
-        pass 
+    def drop(self, courseName):
+        self.schedule = self.schedule.drop([courseName], axis = 0)
+        
     
     def verify_credits():
         pass
