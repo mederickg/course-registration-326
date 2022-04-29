@@ -21,8 +21,6 @@ class Register:
     def print_schedule():
         pass 
     
-    def can_walk():
-        pass 
     
 class Course_db():
     
