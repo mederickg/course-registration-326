@@ -12,7 +12,14 @@ class Register:
        sec_num_filt = self.course_db["Section number"] == section_num
        combined_filter = pfx_filt & sec_num_filt & course_num_filt
        
-       self.schedule = pd.concat([self.schedule,self.course_db[combined_filter]])
+       entry = self.course_db[combined_filter]
+       
+       if entry.loc[entry.index[0],"Credits needed"] > self.transcript.loc[0,"credits"]:
+           return ValueError("Have not met credit requirements")
+       else:
+        self.schedule = pd.concat([self.schedule,entry])
+       
+       
 
     
     def drop(self, courseName):
