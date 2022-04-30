@@ -13,9 +13,9 @@ class Register:
        combined_filter = pfx_filt & sec_num_filt & course_num_filt
        
        entry = self.course_db[combined_filter]
-    
+
        self.schedule = pd.concat([self.schedule,entry])
-       self.schedule = self.schedule.drop(columns=['Credits needed'])
+      
     
     def drop(self, courseName):
         self.schedule = self.schedule.drop([courseName], axis = 0)
@@ -27,6 +27,7 @@ class Register:
         pass 
     
     def print_schedule(self):
+        self.schedule = self.schedule.drop(columns=['Credits needed'])
         return self.schedule.head()
     
     
