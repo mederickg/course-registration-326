@@ -6,8 +6,15 @@ class Register:
         self.course_db = pd.read_csv(course_db)
         self.schedule = pd.DataFrame()
     
-    def add(): 
-        pass
+    def add(self,prefix,course_num,section_num): 
+       pfx_filt =  self.course_db["Prefix"] == prefix 
+       course_num_filt = self.course_db["Course number"] == course_num 
+       sec_num_filt = self.course_db["Section number"] == section_num
+       combined_filter = pfx_filt & sec_num_filt & course_num_filt
+       
+       entry = self.course_db[combined_filter]
+       
+       self.schedule = pd.concat([self.schedule,entry])
     
     def drop(self, courseName):
         self.schedule = self.schedule.drop([courseName], axis = 0)
@@ -18,8 +25,8 @@ class Register:
     def verify_time():
         pass 
     
-    def print_schedule():
-        pass 
+    def print_schedule(self):
+        return self.schedule.head()
     
     
 class Course_db():
