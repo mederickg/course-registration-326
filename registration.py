@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import pandas as pd 
 
 class Register:
@@ -12,10 +13,8 @@ class Register:
        sec_num_filt = self.course_db["Section number"] == section_num
        combined_filter = pfx_filt & sec_num_filt & course_num_filt
        
-       entry = self.course_db[combined_filter]
+       self.schedule = pd.concat([self.schedule,self.course_db[combined_filter]])
 
-       self.schedule = pd.concat([self.schedule,entry])
-      
     
     def drop(self, courseName):
         self.schedule = self.schedule.drop([courseName], axis = 0)
