@@ -1,4 +1,3 @@
-from multiprocessing.sharedctypes import Value
 import pandas as pd 
 
 class Register:
