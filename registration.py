@@ -22,8 +22,14 @@ class Register:
        
 
     
-    def drop(self, courseName):
-        self.schedule = self.schedule.drop([courseName], axis = 0)
+    def drop(self,prefix,course_num):
+         pfx_filt =  self.course_db["Prefix"] == prefix 
+         course_num_filt = self.course_db["Course number"] == course_num 
+         combined_filt = pfx_filt & course_num_filt
+         
+         entry = self.schedule[combined_filt]
+         drop_val = entry.index[0]
+         self.schedule = self.schedule.drop([drop_val], axis = 0)
         
     def verify_credits():
         pass
