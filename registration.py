@@ -18,6 +18,7 @@ class Register:
            return ValueError("Have not met credit requirements")
        else:
         self.schedule = pd.concat([self.schedule,entry])
+        self.schedule = self.schedule.drop(columns=['Credits needed'])
        
        
 
@@ -38,7 +39,6 @@ class Register:
         pass 
     
     def print_schedule(self):
-        self.schedule = self.schedule.drop(columns=['Credits needed'])
         return self.schedule.head()
     
     
