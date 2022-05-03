@@ -21,7 +21,6 @@ class Register:
         self.schedule = self.schedule.drop(columns=['Credits needed'])
        
        
-
     
     def drop(self,prefix,course_num):
          pfx_filt =  self.course_db["Prefix"] == prefix 
