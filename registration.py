@@ -2,17 +2,6 @@ import pandas as pd
 import re
 
 
-class Course_db():
-    
-    def __init__(self, path):
-        self.courses = pd.read_csv(path)
-    
-    def add_courses(self, path): 
-        temp = pd.read_csv(path)
-        self.courses = pd.concat([self.courses, temp])
-    
-    
-
 import persontypes
 class School:
     
@@ -114,4 +103,3 @@ class Student():
        return f"There are {self.students.len()} students and {self.faculty.len()} \
            faculty at this school. This school offers {len(self.courses)} courses."
            
-## sdfjsiogji0jgijgioadjgio
