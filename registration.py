@@ -50,6 +50,10 @@ class School:
     
     def class_rankings():
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
+    
+    def __str__(self):
+       return f"There are {self.students.len()} students and {self.faculty.len()} \
+           faculty at this school. This school offers {len(self.courses)} courses."
        
        
         
@@ -97,7 +101,5 @@ class Student():
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
    
-   def __str__(self):
-       return f"There are {self.students.len()} students and {self.faculty.len()} \
-           faculty at this school. This school offers {len(self.courses)} courses."
+   
            
