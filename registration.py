@@ -1,6 +1,6 @@
 import pandas as pd 
 import re
-
+from argparse import ArgumentParser
 
 class School:
     
@@ -60,9 +60,6 @@ class School:
     def print_grades(self, Student= None):
         pass
     
-    if __name__ == "__main__":
-        pass
-        
     def student_stats(year):
         """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
         maybe gets gpa breakdown for all students in a certain class
@@ -90,7 +87,7 @@ class Student():
         self.grades = {}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
-        self.course_db = courses
+        self.course_db = pd.read_csv(courses)
      
    def add(self,prefix,course_num,section_num): 
        pfx_filt =  self.course_db["Prefix"] == prefix 
@@ -123,7 +120,11 @@ class Student():
     
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
+        pass
     
    
+if __name__ == "__main__":
+       pass
+
    
            
