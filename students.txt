@@ -1,0 +1,10 @@
+Jordan Poole, 23, 2021, 30
+Ricky Rubio, 31, 2020, 5
+Paul George, 20, 2023,60
+Patrick Beverly, 20, 2023, 500
+Tyler Herro, 21, 2018, 6
+Giannis Antetokounmpo, 27, 2022, 65
+Evan Mobley, 20, 2025, 0
+Tyrese Haliburton, 22, 2020,30
+Luka Doncic, 24, 2024, 60
+Robert Williams, 22, 2018, 95
