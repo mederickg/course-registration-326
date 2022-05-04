@@ -101,4 +101,15 @@ class School:
     def class_rankings():
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
         
+class Student():
+    
+    def __init__(self,year,schedule):
+       super.__init__(self)
+       self.year=year
         
+    def add_class():
+        """adds a class to a students schedule if their schedule allows for it AND they meet prerequisites"""
+        pass
+    def drop_class():
+        """drops a class, updates the student schedule as needed"""
+        pass
