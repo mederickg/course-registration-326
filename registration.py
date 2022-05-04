@@ -1,46 +1,7 @@
 import pandas as pd 
 import re
 
-class Register:
-    
-    def __init__(self,transcript,course_db):
-        self.transcript = pd.read_csv(transcript)
-        self.course_db = pd.read_csv(course_db)
-        self.schedule = pd.DataFrame()
-    
-    def add(self,prefix,course_num,section_num): 
-       pfx_filt =  self.course_db["Prefix"] == prefix 
-       course_num_filt = self.course_db["Course number"] == course_num 
-       sec_num_filt = self.course_db["Section number"] == section_num
-       combined_filter = pfx_filt & sec_num_filt & course_num_filt
-       
-       entry = self.course_db[combined_filter]
-       
-       if entry.loc[entry.index[0],"Credits needed"] > self.transcript.loc[0,"credits"]:
-           return ValueError("Have not met credit requirements")
-       else:
-        self.schedule = pd.concat([self.schedule,entry])
-        self.schedule = self.schedule.drop(columns=['Credits needed'])
-       
-    def drop(self,prefix,course_num):
-         pfx_filt =  self.course_db["Prefix"] == prefix 
-         course_num_filt = self.course_db["Course number"] == course_num 
-         combined_filt = pfx_filt & course_num_filt
-         
-         entry = self.schedule[combined_filt]
-         drop_val = entry.index[0]
-         self.schedule = self.schedule.drop([drop_val], axis = 0)
-    
-    def verify_time():
-        pass
-    
-    def print_schedule(self):
-        return self.schedule.head()
-    
-    def sort_schedule():
-        """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
-    
-    
+
 class Course_db():
     
     def __init__(self, path):
@@ -100,16 +61,50 @@ class School:
     
     def class_rankings():
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
+       
+       
         
 class Student():
     
-    def __init__(self,year,schedule):
-       super.__init__(self)
-       self.year=year
-        
-    def add_class():
-        """adds a class to a students schedule if their schedule allows for it AND they meet prerequisites"""
+   def __init__(self, name, age, year, credits,course_db):
+        self.name = name
+        self.age = age
+        self.year = year
+        self.credits = credits
+        self.grades = {}
+        self.gpa = 0.00
+        self.schedule = pd.DataFrame()
+        self.course_db = course_db
+     
+   def add(self,prefix,course_num,section_num): 
+       pfx_filt =  self.course_db["Prefix"] == prefix 
+       course_num_filt = self.course_db["Course number"] == course_num 
+       sec_num_filt = self.course_db["Section number"] == section_num
+       combined_filter = pfx_filt & sec_num_filt & course_num_filt
+       
+       entry = self.course_db[combined_filter]
+       
+       if entry.loc[entry.index[0],"Credits needed"] > self.transcript.loc[0,"credits"]:
+           return ValueError("Have not met credit requirements")
+       else:
+        self.schedule = pd.concat([self.schedule,entry])
+        self.schedule = self.schedule.drop(columns=['Credits needed'])
+       
+   def drop(self,prefix,course_num):
+         pfx_filt =  self.course_db["Prefix"] == prefix 
+         course_num_filt = self.course_db["Course number"] == course_num 
+         combined_filt = pfx_filt & course_num_filt
+         
+         entry = self.schedule[combined_filt]
+         drop_val = entry.index[0]
+         self.schedule = self.schedule.drop([drop_val], axis = 0)
+    
+   def verify_time():
         pass
-    def drop_class():
-        """drops a class, updates the student schedule as needed"""
-        pass
+    
+   def print_schedule(self):
+        return self.schedule.head()
+    
+   def sort_schedule():
+        """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
+    
