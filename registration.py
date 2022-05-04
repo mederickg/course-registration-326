@@ -7,27 +7,44 @@ class School:
     
     GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
     
-    def __init__(self,students,courses,faculty =[]):
+    def __init__(self,students,courses,faculty):
+        """initializes a School object
 
+        Args:
+            students (list): list of student objects in the school
+            courses (DataFrame): a dataframe of availible courses and sections
+            faculty (list): list of faculty members
+        """
         self.students= students
         self.studentsdict = {}
         self.courses= pd.DataFrame(pd.read_csv(courses))
         self.faculty=faculty
     
     def add_course(self, course):
-        """adds a course to the school.
-        
-        maybe we use the argparser here"""
+        """Adds a course section to the courses dataframe
+
+        Args:
+            course (DataFrame): a course section
+        """
         self.courses.append(course)
         
-    def addMultipleStudents(self, path):
-        """Reads in a formatted file of students, constructs them, and adds them to the students at the school
-        regex + reading in  from file"""
+    def regex_match(self, line):    
+        """matches values in a txt file line to create a Student object
+
+        Args:
+            line (string): a string containing student name, age, year, and credits earned
+        """
+        pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
+        searched = re.search(pattern, line)
+        self.students.append(Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3), self.courses))   
         
+    def addMultipleStudents(self, path):
+        """allows users to use a txt file containing multiple students, and add them in mass to the School.students list
+
+        Args:
+            path (string): a path to a txt file
+        """
         with open(path,'r',encoding='utf-8') as file:
-               #re.search function to find student name, year, and ID
-               #build Student objects for each line in the file
-               #add student objects to self.students
            for line in file:
                pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
                searched = re.search(pattern, line)
@@ -43,6 +60,20 @@ class School:
     def print_grades(self, student= None):
         #looks at student grades in each class and prints it
         # student will be a string of the student name 
+               self.regex_match(line) 
+        
+    def addStudent(self, name, age, year, schedule={}):
+        """Adds a single student to the School.students list
+
+        Args:
+            name (str): student full name
+            age (int): student age
+            year (int): year of graduation
+            schedule (dict, optional): student schedule. Defaults to {}.
+        """
+        self.students.append(Student(name, age, year, schedule))
+    
+    def print_grades(self, Student= None):
         pass
     
     def student_stats(year):
@@ -55,8 +86,10 @@ class School:
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
     
     def __str__(self):
-       return f"There are {self.students.len()} students and {self.faculty.len()} \
-           faculty at this school. This school offers {len(self.courses)} courses."
+        """prints the informal representaion of the School object
+        """
+        print(f"There are {self.students.len()} students and {self.faculty.len()} \
+           faculty at this school. This school offers {len(self.courses)} courses.")
        
        
         
