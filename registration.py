@@ -27,9 +27,9 @@ class School:
                #build Student objects for each line in the file
                #add student objects to self.students
            for line in file:
-               pattern = r"^(\S+), (\S+), (\d+)$"
+               pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
                searched = re.search(pattern, line)
-               self.students.append(Student(searched.group(0), searched.group(1)))
+               self.students.append(Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3), self.courses))
                pass
            
     def addStudent(self, name, age, year, schedule={}):
@@ -40,9 +40,6 @@ class School:
         #looks at student grades in each class and prints it
         pass
     
-    if __name__ == "__main__":
-        pass
-        
     def student_stats(year):
         """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
         maybe gets gpa breakdown for all students in a certain class
@@ -102,8 +99,10 @@ class Student():
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
         pass
+    
    
 if __name__ == "__main__":
        pass
 
    
+           
