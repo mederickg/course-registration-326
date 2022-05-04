@@ -84,7 +84,7 @@ class Student():
        
        entry = self.course_db[combined_filter]
        
-       if entry.loc[entry.index[0],"Credits needed"] > self.transcript.loc[0,"credits"]:
+       if entry.loc[entry.index[0],"Credits needed"] > self.credits:
            return ValueError("Have not met credit requirements")
        else:
         self.schedule = pd.concat([self.schedule,entry])
