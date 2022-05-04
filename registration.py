@@ -10,6 +10,8 @@ class Course_db():
     def add_courses(self, path): 
         temp = pd.read_csv(path)
         self.courses = pd.concat([self.courses, temp])
+    
+    
 
 import persontypes
 class School:
@@ -66,7 +68,7 @@ class School:
         
 class Student():
     
-   def __init__(self, name, age, year, credits,course_db):
+   def __init__(self, name, age, year, credits, course_db):
         self.name = name
         self.age = age
         self.year = year
