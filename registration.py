@@ -1,6 +1,7 @@
 import pandas as pd 
 import re
 
+
 class School:
     
     GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
@@ -8,7 +9,7 @@ class School:
     def __init__(self,students,courses,faculty):
 
         self.students= students
-        self.courses= Course_db(courses)
+        self.courses= pd.DataFrame(pd.read_csv(courses))
         self.faculty=faculty
     
     def add_course(self, course):
@@ -55,7 +56,7 @@ class School:
         
 class Student():
     
-   def __init__(self, name, age, year, credits, course_db):
+   def __init__(self, name, age, year, credits, courses):
         self.name = name
         self.age = age
         self.year = year
@@ -63,7 +64,7 @@ class Student():
         self.grades = {}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
-        self.course_db = course_db
+        self.course_db = courses
      
    def add(self,prefix,course_num,section_num): 
        pfx_filt =  self.course_db["Prefix"] == prefix 
@@ -92,12 +93,8 @@ class Student():
         pass
     
    def print_schedule(self):
-        return self.schedule.head()
+        return self.schedule
     
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
-   
-   def __str__(self):
-       return f"There are {self.students.len()} students and {self.faculty.len()} \
-           faculty at this school. This school offers {len(self.courses)} courses."
-           
+    
