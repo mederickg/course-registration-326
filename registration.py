@@ -29,7 +29,7 @@ class School:
            for line in file:
                pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
                searched = re.search(pattern, line)
-               self.students.append(Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3)))
+               self.students.append(Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3), self.courses))
                pass
            
     def addStudent(self, name, age, year, schedule={}):
