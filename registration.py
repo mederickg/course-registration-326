@@ -1,6 +1,6 @@
 import pandas as pd 
 import re
-
+from argparse import ArgumentParser
 
 class School:
     
@@ -68,7 +68,7 @@ class Student():
         self.grades = {}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
-        self.course_db = courses
+        self.course_db = pd.read_csv(courses)
      
    def add(self,prefix,course_num,section_num): 
        pfx_filt =  self.course_db["Prefix"] == prefix 
@@ -101,10 +101,9 @@ class Student():
     
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
-<<<<<<< HEAD
-    
-=======
+        pass
    
+if __name__ == "__main__":
+       pass
+
    
-           
->>>>>>> f20392a26c32a3e69a865d8112b84a8c46e93f75
