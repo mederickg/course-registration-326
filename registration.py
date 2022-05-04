@@ -30,12 +30,9 @@ class Register:
          entry = self.schedule[combined_filt]
          drop_val = entry.index[0]
          self.schedule = self.schedule.drop([drop_val], axis = 0)
-        
-    def verify_credits():
-        pass
     
     def verify_time():
-        pass  
+        pass
     
     def print_schedule(self):
         return self.schedule.head()
