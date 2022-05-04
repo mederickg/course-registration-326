@@ -1,4 +1,5 @@
 import pandas as pd 
+import re
 
 class Register:
     
@@ -21,11 +22,6 @@ class Register:
         self.schedule = pd.concat([self.schedule,entry])
         self.schedule = self.schedule.drop(columns=['Credits needed'])
        
-<<<<<<< HEAD
-       
-    
-=======
->>>>>>> 0c553dac9cb156518391f58fb12be260106548c6
     def drop(self,prefix,course_num):
          pfx_filt =  self.course_db["Prefix"] == prefix 
          course_num_filt = self.course_db["Course number"] == course_num 
@@ -39,7 +35,7 @@ class Register:
         pass
     
     def verify_time():
-        pass 
+        pass  
     
     def print_schedule(self):
         return self.schedule.head()
@@ -76,7 +72,6 @@ class School:
         
     def addMultipleStudents(self, path):
         """Reads in a formatted file of students, constructs them, and adds them to the students at the school
-        
         regex + reading in  from file"""
         
         with open(path,'r',encoding='utf-8') as file:
