@@ -101,10 +101,7 @@ class Student():
     
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
-<<<<<<< HEAD
     
-=======
    
    
            
->>>>>>> f20392a26c32a3e69a865d8112b84a8c46e93f75
