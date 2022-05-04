@@ -1,19 +1,6 @@
 import pandas as pd 
 import re
 
-
-class Course_db():
-    
-    def __init__(self, path):
-        self.courses = pd.read_csv(path)
-    
-    def add_courses(self, path): 
-        temp = pd.read_csv(path)
-        self.courses = pd.concat([self.courses, temp])
-    
-    
-
-import persontypes
 class School:
     
     GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
@@ -109,4 +96,8 @@ class Student():
     
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
-    
+   
+   def __str__(self):
+       return f"There are {self.students.len()} students and {self.faculty.len()} \
+           faculty at this school. This school offers {len(self.courses)} courses."
+           
