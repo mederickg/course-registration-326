@@ -176,11 +176,10 @@ if __name__ == "__main__":
                 elif(option == 3):
                     pass
                 else:
-                    option =input("please enter a valid option: \n 1.add class\n 2.drop class\n3.print transcript\n4.exit")
+                    option =input("please enter a valid option: \n 1.add class\n 2.drop class\n3.print transcript\n4.exit\n")
         
     else:
-        option = input("What would you like to do today?\n 1.add multiple students\n2.add single student\n3.add course \n4. print student\
-        transcript\n5. Exit")
+        option = input("What would you like to do today?\n 1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. Exit\n")
         
         while(option!='5'):
             
@@ -190,7 +189,7 @@ if __name__ == "__main__":
                 umd.addMultipleStudents(input)
                 
                 option =("complete! would you like to do anything else? \n 1.add multiple students\n2.add single student\n3.add course \n4. print student\
-                transcript\n5. Exit")
+                transcript\n5. Exit\n")
             elif(option == '2'):
                 pass
             elif(option == '3'):
