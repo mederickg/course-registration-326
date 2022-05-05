@@ -12,6 +12,7 @@ class School:
 
         Args:
             students (list): list of student objects in the school
+            studentsdict (dict): Dictionary of student names as keys and student object as value
             courses (DataFrame): a dataframe of availible courses and sections
             faculty (list): list of faculty members
         """
