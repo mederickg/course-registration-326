@@ -18,7 +18,7 @@ class School:
             faculty (list): list of faculty members
         """
         self.students= []
-        self.studentsdict = {}
+        self.studentsdict = {str:Student}
         self.courses= pd.DataFrame(pd.read_csv(courses))
     
     def add_course(self, course):
@@ -95,9 +95,9 @@ class Student():
     
    def __init__(self, name, age, year, credits, courses):
         self.name = name
-        self.age = age
-        self.year = year
-        self.credits = credits
+        self.age = int(age)
+        self.year = int(year)
+        self.credits = int(credits)
         self.grades = {}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
@@ -129,8 +129,8 @@ class Student():
    def verify_time():
         pass
     
-   def print_schedule(self):
-        return self.schedule
+   def print_schedule(self):   
+        print(self.schedule.to_string())
     
    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
@@ -149,9 +149,13 @@ def parse_args(arglist):
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     
+    ##for now, specialized for the demo
+    
     umd = School(args.courses)
     print(args.students)
     umd.addMultipleStudents(args.students)
+    umd.studentsdict["Giannis Antetokounmpo"].add("INST", 335, 102)
+    
     
     perspective = input("Hello, are you accessing from a student or school perspective? 1 for student, 2 for school: ") 
 
@@ -165,7 +169,7 @@ if __name__ == "__main__":
             umd.students.append(user)
             track = (umd.students.index(user))
             
-            option = input("What would you like to do today? \n 1.add class\n 2.drop class\n3.print transcript\n4.exit")
+            option = input("What would you like to do today? \n1.add class\n 2.drop class\n3.print transcript\n4.exit")
 
             while(option != 4):
                 
@@ -179,7 +183,7 @@ if __name__ == "__main__":
                     option =input("please enter a valid option: \n 1.add class\n 2.drop class\n3.print transcript\n4.exit")
         
     else:
-        option = input("What would you like to do today?\n 1.add multiple students\n2.add single student\n3.add course \n4. print student\
+        option = input("What would you like to do today?\n1.add multiple students\n2.add single student\n3.add course \n4. print student\
         transcript\n5. Exit")
         
         while(option!='5'):
@@ -196,10 +200,10 @@ if __name__ == "__main__":
             elif(option == '3'):
                 pass
             elif(option == '4'):
-                choice  = input("Please enter the student")
+                choice  = input("Please enter the student: ")
                 
-                print(umd.students)
-               # umd.print_grades(umd.studentsdict[choice])
+                umd.studentsdict[choice].print_schedule()
+
             elif(option == '5'):
                 break
    
