@@ -1,3 +1,4 @@
+import string
 import pandas as pd 
 import re
 from argparse import ArgumentParser
@@ -7,7 +8,7 @@ class School:
     
     GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
     
-    def __init__(self,students,courses,faculty):
+    def __init__(self,courses,faculty=[]):
         """initializes a School object
 
         Args:
@@ -15,7 +16,7 @@ class School:
             courses (DataFrame): a dataframe of availible courses and sections
             faculty (list): list of faculty members
         """
-        self.students= students
+        self.students= []
         self.studentsdict = {}
         self.courses= pd.DataFrame(pd.read_csv(courses))
         self.faculty=faculty
@@ -143,7 +144,7 @@ def parse_args(arglist):
     
     parser = ArgumentParser("get filepaths to initiate the school program")
     parser.add_argument("students", help="filepath to a file containing students enrolled in the school") 
-    parser.add_argument("courses", help = "filepath to a file containing the courses held at the school")
+    parser.add_argument("courses",help = "filepath to a file containing the courses held at the school")
     args = parser.parse_args(arglist)
     
     return args  
@@ -151,7 +152,9 @@ def parse_args(arglist):
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     
-    umd = School(args.students,args.courses)
+    umd = School(args.courses)
+    print(args.students)
+    umd.addMultipleStudents(args.students)
     
     perspective = input("Hello, are you accessing from a student or school perspective? 1 for student, 2 for school") 
 
@@ -185,15 +188,23 @@ if __name__ == "__main__":
         while(option!='5'):
             
             if(option == '1'):
-                pass
+                choice = input("please enter a file path to students you would like to add")
+                
+                umd.addMultipleStudents(input)
+                
+                option =("complete! would you like to do anything else? \n 1.add multiple students\n2.add single student\n3.add course \n4. print student\
+                transcript\n5. Exit")
             elif(option == '2'):
                 pass
             elif(option == '3'):
                 pass
             elif(option == '4'):
-                pass
+                choice  = input("Please enter the student")
+                
+                print(umd.students)
+               # umd.print_grades(umd.studentsdict[choice])
             elif(option == '5'):
-                break            
+                break
    
 
 
