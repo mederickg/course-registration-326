@@ -8,18 +8,18 @@ class School:
     
     GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
     
-    def __init__(self,courses,faculty=[]):
+    def __init__(self,students,courses):
         """initializes a School object
 
         Args:
             students (list): list of student objects in the school
+            studentsdict (dict): Dictionary of student names as keys and student object as value
             courses (DataFrame): a dataframe of availible courses and sections
             faculty (list): list of faculty members
         """
         self.students= []
         self.studentsdict = {}
         self.courses= pd.DataFrame(pd.read_csv(courses))
-        self.faculty=faculty
     
     def add_course(self, course):
         """Adds a course section to the courses dataframe
@@ -156,14 +156,14 @@ if __name__ == "__main__":
     print(args.students)
     umd.addMultipleStudents(args.students)
     
-    perspective = input("Hello, are you accessing from a student or school perspective? 1 for student, 2 for school") 
+    perspective = input("Hello, are you accessing from a student or school perspective? 1 for student, 2 for school: ") 
 
     if(perspective == '1'):
 
-            name = input("Please enter your full name in format fname, lname:")
-            age = input("Please enter your age:")
-            year = input("Please enter your class (graduation year):")
-            credits = input("How many credits are you enrolling with?")
+            name = input("Please enter your full name in format fname, lname: ")
+            age = input("Please enter your age: ")
+            year = input("Please enter your class (graduation year): ")
+            credits = input("How many credits are you enrolling with?: ")
             user = Student(name,int(age),int(year),int(credits)) 
             umd.students.append(user)
             track = (umd.students.index(user))
