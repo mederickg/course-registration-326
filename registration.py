@@ -8,7 +8,7 @@ class School:
     
     GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
     
-    def __init__(self,students,courses):
+    def __init__(self,courses):
         """initializes a School object
 
         Args:
@@ -36,8 +36,9 @@ class School:
             line (string): a string containing student name, age, year, and credits earned
         """
         pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
-        searched = re.search(pattern, line)
-        self.students.append(Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3), self.courses))   
+        searched = re.search(pattern, line.strip())
+        self.students.append(Student(searched.group(1), searched.group(2), searched.group(3), searched.group(4), self.courses))
+        self.studentsdict[searched.group(1)] = Student(searched.group(1), searched.group(2), searched.group(3), searched.group(4), self.courses)   
         
     def addMultipleStudents(self, path):
         """allows users to use a txt file containing multiple students, and add them in mass to the School.students list
@@ -47,11 +48,7 @@ class School:
         """
         with open(path,'r',encoding='utf-8') as file:
            for line in file:
-               pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
-               searched = re.search(pattern, line)
-               self.students.append(Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3), self.courses))
-               self.studentsdict[searched.group(0)] = Student(searched.group(0), searched.group(1), searched.group(2), searched.group(3), self.courses)
-               pass
+               self.regex_match(line)
            
     def addStudent(self, name, age, year, schedule={}):
         #at some point this function will be able to order the schedule 
@@ -104,7 +101,7 @@ class Student():
         self.grades = {}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
-        self.course_db = pd.read_csv(courses)
+        self.course_db = courses
      
    def add(self,prefix,course_num,section_num): 
        pfx_filt =  self.course_db["Prefix"] == prefix 
