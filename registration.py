@@ -92,8 +92,9 @@ class School:
        
         
 class Student():
-    
-   def __init__(self, name, age, year, credits, courses):
+    """Student class contains all student information for studnets held in the shchool, for use in 
+        data aggregtion"""
+    def __init__(self, name, age, year, credits, courses):
         self.name = name
         self.age = int(age)
         self.year = int(year)
@@ -103,7 +104,8 @@ class Student():
         self.schedule = pd.DataFrame()
         self.course_db = courses
      
-   def add(self,prefix,course_num,section_num): 
+    def add(self,prefix,course_num,section_num): 
+       """Adds course to student schedule given they meet credit/time requirements"""
        pfx_filt =  self.course_db["Prefix"] == prefix 
        course_num_filt = self.course_db["Course number"] == course_num 
        sec_num_filt = self.course_db["Section number"] == section_num
@@ -117,22 +119,23 @@ class Student():
         self.schedule = pd.concat([self.schedule,entry])
         self.schedule = self.schedule.drop(columns=['Credits needed'])
        
-   def drop(self,prefix,course_num):
-         pfx_filt =  self.course_db["Prefix"] == prefix 
-         course_num_filt = self.course_db["Course number"] == course_num 
-         combined_filt = pfx_filt & course_num_filt
+    def drop(self,prefix,course_num):
+        """drops course from student schedule"""
+        pfx_filt =  self.course_db["Prefix"] == prefix 
+        course_num_filt = self.course_db["Course number"] == course_num 
+        combined_filt = pfx_filt & course_num_filt
          
-         entry = self.schedule[combined_filt]
-         drop_val = entry.index[0]
-         self.schedule = self.schedule.drop([drop_val], axis = 0)
+        entry = self.schedule[combined_filt]
+        drop_val = entry.index[0]
+        self.schedule = self.schedule.drop([drop_val], axis = 0)
     
-   def verify_time():
+    def verify_time():
         pass
     
-   def print_schedule(self):   
+    def print_schedule(self):   
         print(self.schedule.to_string())
     
-   def sort_schedule():
+    def sort_schedule():
         """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
         pass
     
@@ -155,6 +158,7 @@ if __name__ == "__main__":
     print(args.students)
     umd.addMultipleStudents(args.students)
     umd.studentsdict["Giannis Antetokounmpo"].add("INST", 335, 102)
+    umd.studentsdict["Giannis Antetokounmpo"].add("INST",126,102)
     
     
     perspective = input("Hello, are you accessing from a student or school perspective? 1 for student, 2 for school: ") 
@@ -183,18 +187,18 @@ if __name__ == "__main__":
                     option =input("please enter a valid option: \n 1.add class\n 2.drop class\n3.print transcript\n4.exit\n")
         
     else:
-        option = input("What would you like to do today?\n1.add multiple students\n2.add single student\n3.add course \n4. print student\
-        transcript\n5. Exit")
+        option = input("What would you like to do today?\n1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. Exit ")
         
         while(option!='5'):
+            
+            
             
             if(option == '1'):
                 choice = input("please enter a file path to students you would like to add")
                 
                 umd.addMultipleStudents(input)
                 
-                option =("complete! would you like to do anything else? \n 1.add multiple students\n2.add single student\n3.add course \n4. print student\
-                transcript\n5. Exit\n")
+                option =("complete! would you like to do anything else? \n 1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. Exit\n")
             elif(option == '2'):
                 pass
             elif(option == '3'):
@@ -203,9 +207,10 @@ if __name__ == "__main__":
                 choice  = input("Please enter the student: ")
                 
                 umd.studentsdict[choice].print_schedule()
-
-            elif(option == '5'):
-                break
+                option = input("complete! would you like to do anything else? \n1.add multiple students\n2.add single student\n3.add course \n4.print student transcript\n5.Exit\n")
+        if(option =='5' ):
+            print("Goodbye!")
+        
    
 
 
