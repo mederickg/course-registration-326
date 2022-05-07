@@ -102,6 +102,8 @@ class School:
         df = pd.DataFrame({'GPA':['0.0', '1.0', '2.0', '3.0', '4.0'], 
                            'num_students':[zero, one, two, three, four]})
         df.plot.bar(x = 'GPA', y = 'num_students', rot = 0)
+        ## Rn it only plots a bar graph, I could maybe have it return something
+        ## that we can actually use. Lmk what u think.
                 
     def class_rankings():
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
