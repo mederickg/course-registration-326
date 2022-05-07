@@ -75,17 +75,15 @@ class School:
         pass
     
     def student_stats(self, course):
-        """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
-        maybe gets gpa breakdown for all students in a certain class
-        interesting spot for list comprehensions maybe"""
+        """Graphs the GPA of all students that have the argument course in their
+        schedule (overall GPA, not course GPA)"""
         gpa_lst = []
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
-            for i in student.schedule.index:
-                if (student.schedule['Prefix'][i] + 
-                    student.schedule['Course number'][i] + 
-                    student.schedule['Section number'][i]) == course:
-                    gpa_lst.append(student.gpa)
+            [student.gpa for i in student.schedule.index if 
+             (student.schedule['Prefix'][i] + 
+              student.schedule['Course number'][i] + 
+              student.schedule['Section number'][i]) == course]
         
         for gpa in gpa_lst:
             str(gpa)
