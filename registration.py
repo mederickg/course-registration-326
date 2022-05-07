@@ -77,10 +77,9 @@ class School:
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
         schedule (overall GPA, not course GPA)"""
-        gpa_lst = []
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
-            [student.gpa for i in student.schedule.index if 
+            gpa_lst = [student.gpa for i in student.schedule.index if 
              (student.schedule['Prefix'][i] + 
               student.schedule['Course number'][i] + 
               student.schedule['Section number'][i]) == course]
