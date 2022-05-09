@@ -51,10 +51,12 @@ class School:
            
     
     def print_grades(self, student= None):
-        print("Null") if Student.istype(None) else print
+        """ write a generic empty schedule for a student with none"""
+        generic_schedule = "Credits = 0, Grade = N/A"
+        print(generic_schedule) if Student.istype(None) else print(student.get_grades())
         #looks at student grades in each class and prints it
         # student will be a string of the student name 
-               self.regex_match(line) 
+               
         
     def addStudent(self, name, age, year, schedule={}):
         """Adds a single student to the School.students list
@@ -99,8 +101,9 @@ class School:
         ## that we can actually use. Lmk what u think.
                 
     def class_rankings():
-        
+        """list sorting"""
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
+        pass
     
     def __str__(self):
         """prints the informal representaion of the School object
