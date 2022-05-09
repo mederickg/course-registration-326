@@ -1,3 +1,4 @@
+
 import string
 import pandas as pd 
 import re
@@ -5,8 +6,6 @@ from argparse import ArgumentParser
 import sys
 
 class School:
-    
-    GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0,}
     
     def __init__(self,courses):
         """initializes a School object
@@ -74,11 +73,6 @@ class School:
     def print_grades(self, Student= None):
         pass
     
-    def student_stats(year):
-        """Not sure here, idea is maybe some way of demonstrating different gpa in a graph or something from students
-        maybe gets gpa breakdown for all students in a certain class
-        interesting spot for list comprehensions maybe"""
-        pass
     
     def class_rankings():
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
@@ -88,18 +82,40 @@ class School:
         """
         print(f"There are {self.students.len()} students and {self.faculty.len()} \
            faculty at this school. This school offers {len(self.courses)} courses.")
+        
+    def calculate_gpa(student):
+        student.getGpa
+    
+    def give_grade(student,course,grade):
+        student.get_grade(course,grade)
+    
+    def get_gpa(student):
+        GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0}
+    
+        keys = student.grades.keys
+        gpa = 0
+        counter=0
+        
+        for key in keys:
+            gpa+= GPAS[student.grades[key]]
+            counter+=1
+        
+        return gpa/counter    
        
        
         
 class Student():
     """Student class contains all student information for studnets held in the shchool, for use in 
         data aggregtion"""
+        
+    
+    
     def __init__(self, name, age, year, credits, courses):
         self.name = name
         self.age = int(age)
         self.year = int(year)
         self.credits = int(credits)
-        self.grades = {}
+        self.grades = {str:str}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
         self.course_db = courses
@@ -117,6 +133,7 @@ class Student():
            return ValueError("Have not met credit requirements")
        else:
         self.schedule = pd.concat([self.schedule,entry])
+        self.grades[f"{prefix }{course_num}"] = None
         self.schedule = self.schedule.drop(columns=['Credits needed'])
        
     def drop(self,prefix,course_num):
@@ -129,15 +146,13 @@ class Student():
         drop_val = entry.index[0]
         self.schedule = self.schedule.drop([drop_val], axis = 0)
     
-    def verify_time():
-        pass
-    
+    def get_grade(self,course,grade):
+        self.grades[str(course)] = grade
+        
     def print_schedule(self):   
         print(self.schedule.to_string())
-    
-    def sort_schedule():
-        """takes schedule dataframe, sorts its values in a list form before recreating the dataframe in order chronologically"""
-        pass
+        
+            
     
    
 def parse_args(arglist):
