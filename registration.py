@@ -50,10 +50,6 @@ class School:
            for line in file:
                self.regex_match(line)
            
-    def addStudent(self, name, age, year, schedule={}):
-        #at some point this function will be able to order the schedule 
-        #adds student to studentdict based on their name
-        self.students.append(Student(name, age, year, schedule))
     
     def print_grades(self, student= None):
         #looks at student grades in each class and prints it
