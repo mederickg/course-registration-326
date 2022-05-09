@@ -49,10 +49,6 @@ class School:
            for line in file:
                self.regex_match(line)
            
-    def addStudent(self, name, age, year, schedule={}):
-        #at some point this function will be able to order the schedule 
-        #adds student to studentdict based on their name
-        self.students.append(Student(name, age, year, schedule))
     
     def print_grades(self, student= None):
         #looks at student grades in each class and prints it
@@ -73,7 +69,37 @@ class School:
     def print_grades(self, Student= None):
         pass
     
-    
+    def student_stats(self, course):
+        """Graphs the GPA of all students that have the argument course in their
+        schedule (overall GPA, not course GPA)"""
+        zero, one, two, three, four = 0, 0, 0, 0, 0
+        for student in self.students:
+            gpa_lst = [student.gpa for i in student.schedule.index if 
+             (student.schedule['Prefix'][i] + 
+              student.schedule['Course number'][i] + 
+              student.schedule['Section number'][i]) == course]
+        
+        for gpa in gpa_lst:
+            str(gpa)
+            dot = gpa.find('.')
+            simple_gpa = int(gpa[dot - 1])
+            if simple_gpa == 0:
+                zero += 1
+            elif simple_gpa == 1:
+                one += 1
+            elif simple_gpa == 2:
+                two += 1
+            elif simple_gpa == 3:
+                three += 1
+            else:
+                four += 1
+                
+        df = pd.DataFrame({'GPA':['0.0', '1.0', '2.0', '3.0', '4.0'], 
+                           'num_students':[zero, one, two, three, four]})
+        df.plot.bar(x = 'GPA', y = 'num_students', rot = 0)
+        ## Rn it only plots a bar graph, I could maybe have it return something
+        ## that we can actually use. Lmk what u think.
+                
     def class_rankings():
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
     
