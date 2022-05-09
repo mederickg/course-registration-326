@@ -51,6 +51,7 @@ class School:
            
     
     def print_grades(self, student= None):
+        print("Null") if Student.istype(None) else print
         #looks at student grades in each class and prints it
         # student will be a string of the student name 
                self.regex_match(line) 
@@ -65,9 +66,6 @@ class School:
             schedule (dict, optional): student schedule. Defaults to {}.
         """
         self.students.append(Student(name, age, year, schedule))
-    
-    def print_grades(self, Student= None):
-        pass
     
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
@@ -101,6 +99,7 @@ class School:
         ## that we can actually use. Lmk what u think.
                 
     def class_rankings():
+        
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
     
     def __str__(self):
