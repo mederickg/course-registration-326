@@ -67,7 +67,8 @@ class School:
         self.students.append(Student(name, age, year,credits))
     
     def print_grades(self, Student= None):
-        pass
+         generic_schedule = "Credits = 0, Grade = N/A"
+         print(generic_schedule) if Student.istype(None) else print(Student.get_grades())
     
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
