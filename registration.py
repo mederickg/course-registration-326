@@ -99,16 +99,7 @@ class School:
         df.plot.bar(x = 'GPA', y = 'num_students', rot = 0)
         ## Rn it only plots a bar graph, I could maybe have it return something
         ## that we can actually use. Lmk what u think.
-                
-    def class_rankings():
-        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
     
-    def __str__(self):
-        """prints the informal representaion of the School object
-        """
-        print(f"There are {self.students.len()} students and {self.faculty.len()} \
-           faculty at this school. This school offers {len(self.courses)} courses.")
-        
     def calculate_gpa(student):
        return student.getGpa()
     
@@ -128,7 +119,20 @@ class School:
         
         return gpa/counter    
     def add_course(self,df):
-        self.courses=pd.concat([self.courses,df])   
+        self.courses=pd.concat([self.courses,df])
+                
+    def class_rankings(self):
+        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
+        class_rankking =sorted(self.gpa, reverse = True, key = lambda g : g [0])
+        print(f"The top five students with the highest GPA from greatest to least are {class_rankking}.")
+    
+    def __str__(self):
+        """prints the informal representaion of the School object
+        """
+        print(f"There are {self.students.len()} students and {self.faculty.len()} \
+           faculty at this school. This school offers {len(self.courses)} courses.")
+        
+      
        
         
 class Student():
