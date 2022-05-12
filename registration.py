@@ -67,8 +67,8 @@ class School:
         self.students.append(Student(name, age, year,credits))
     
     def print_grades(self, Student= None):
-         generic_schedule = "Credits = 0, Grade = N/A"
-         print(generic_schedule) if Student.istype(None) else print(Student.get_grades())
+        generic_schedule = "Credits = 0, Grade = N/A"
+        print(generic_schedule) if Student.istype(None) else print(Student.get_grades())
     
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
@@ -124,8 +124,8 @@ class School:
                 
     def class_rankings(self):
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
-        class_rankking =sorted(self.gpa, reverse = True, key = lambda g : g [0])
-        print(f"The top five students with the highest GPA starting from greatest to least are {class_rankking}.")
+        class_ranking =sorted(self.gpa, reverse = True, key = lambda g : g [0])
+        print(f"The top five students with the highest GPA starting from greatest to least are {class_ranking}.")
     
     def __str__(self):
         """prints the informal representaion of the School object
@@ -162,11 +162,12 @@ class Student():
        entry = self.course_db[combined_filter]
        
        if entry.loc[entry.index[0],"Credits needed"] > self.credits:
-           return ValueError("Have not met credit requirements")
+           #return ValueError("Have not met credit requirements")
+           print("you do not have enough credits for this class.")
        else:
-        self.schedule = pd.concat([self.schedule,entry])
-        self.grades[f"{prefix }{course_num}"] = None
-        self.schedule = self.schedule.drop(columns=['Credits needed'])
+            self.schedule = pd.concat([self.schedule,entry])
+            self.grades[f"{prefix }{course_num}"] = None
+            self.schedule = self.schedule.drop(columns=['Credits needed'])
        
     def drop(self,prefix,course_num):
         """drops course from student schedule"""
@@ -203,6 +204,7 @@ if __name__ == "__main__":
     
     umd = School(args.courses)
     print(args.students)
+    umd.addMultipleStudents(args.students)
     
     
     perspective = input("Hello, are you accessing from a student or school perspective? 1 for student, 2 for school: ") 
@@ -219,42 +221,49 @@ if __name__ == "__main__":
             
             option = input("What would you like to do today? \n1.add class\n 2.drop class\n3.print transcript\n4.Print Schedule\n5.exit")
 
-            while(option != 5):
+            while(option != '5'):
                 
-                if(option == 1):
+                if(option == '1'):
                     print(umd.courses.to_string())
+                    print("\n")
                     
                     prefix = input("please enter the course prefix: ")
-                    course_num = input("please enter the course number: ")
-                    section_num = input("please enter the section number: ")
+                    course_num = int(input("please enter the course number: "))
+                    section_num = int(input("please enter the section number: "))
                     umd.studentsdict[name].add(prefix,course_num,section_num)
                     
-                    option = input("Complete! would you like to do anything else? \n1.add class\n 2.drop class\n3.print transcript\n4.print schedule\n5.exit")
+                    option = input("Complete! would you like to do anything else? \n1.add class\n2.\
+                        drop class\n3.print transcript\n4.print schedule\n5.exit")
                     
-                elif(option ==2):
+                elif(option =='2'):
                     prefix = input("please enter the course prefix: ")
-                    course_num = input("please enter the course number: ")
+                    course_num = int(input("please enter the course number: "))
                     
                     umd.studentsdict[name].drop(prefix,course_num)
-                    option = input("Complete! would you like to do anything else? \n1.add class\n 2.drop class\n3.print transcript\n4.print schedule\n5.exit")
+                    option = input("Complete! would you like to do anything else? \n1.add class\n2.drop class\n3.\
+                        print transcript\n4.print schedule\n5.exit")
                     
                     
-                elif(option == 3):
+                elif(option == '3'):
                     umd.print_grades(umd.studentsdict[name])
                     
-                    option = input("Complete! would you like to do anything else? \n1.add class\n 2.drop class\n3.print transcript\n4.print schedule\n5.exit")
-                elif(option ==4):
+                    option = input("Complete! would you like to do anything else? \n1.add class\n2.drop class\n3.\
+                        print transcript\n4.print schedule\n5.exit")
+                elif(option =='4'):
                     umd.studentsdict[name].print_schedule()
-                    option = input("Complete! would you like to do anything else? \n1.add class\n 2.drop class\n3.print transcript\n4.print schedule\n5.exit")
+                    option = input("Complete! would you like to do anything else? \n1.add class\n2.drop class\n3.\
+                        print transcript\n4.print schedule\n5.exit")
                 else:
-                    option =input("please enter a valid option: \n 1.add class\n 2.drop class\n3.print transcript\n4.exit\n")
-            if(option == 5):
+                    option =input("please enter a valid option: \n 1.add class\n 2.drop class\n3.\
+                        print transcript\n4.exit\n")
+            if(option == '5'):
                 print("Goodbye!")
         
     else:
-        option = input("What would you like to do today?\n1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. get student stats\n6. Exit ")
+        option = input("What would you like to do today?\n1.add multiple students\n2.add single student\n3.\
+            add course \n4.print student transcript\n5.get student stats\n6.Exit ")
         
-        while(option!='5'):
+        while(option!='6'):
             
             
             
@@ -263,7 +272,8 @@ if __name__ == "__main__":
                 
                 umd.addMultipleStudents(input)
                 
-                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. get student stats\n6. Exit ")
+                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.\
+                    add course \n4. print student transcript\n5. get student stats\n6. Exit ")
             elif(option == '2'):
                 name = input("Please enter the student name:")
                 age = input("Please enter the student age: ")
@@ -271,7 +281,8 @@ if __name__ == "__main__":
                 
                 umd.addStudent(name,age,year)
                 
-                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. get student stats\n6. Exit ")                
+                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.\
+                    add course \n4. print student transcript\n5. get student stats\n6. Exit ")                
             elif(option == '3'):
                 df = pd.DataFrame(columns=["Prefix","Course number","Section number","Course name","Times","Instructor","Building","Credits needed"])
                 prefix  = input("Enter course Prefix: ")
@@ -288,10 +299,15 @@ if __name__ == "__main__":
                 
                 df = df.append(dict,ignore_index=True)
                 umd.add_course(df)
-                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. get student stats\n6. Exit ")
-                
+                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.\
+                    add course \n4. print student transcript\n5. get student stats\n6. Exit ")
                 
             elif(option == '4'):
+                name = input("please enter the student: ")
+                
+                umd.print_grades(umd.studentsdict[name])
+                
+            elif(option == '5'):
                 choice  = input("Please enter the student: ")
                 
                 umd.studentsdict[choice].print_schedule()
@@ -301,8 +317,13 @@ if __name__ == "__main__":
                 
                 umd.student_stats(f"{course}{course_num}{section_num}")
                 
-                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.add course \n4. print student transcript\n5. get student stats\n6. Exit ")            elif(option == '5'):
-        if(option =='6' ):
+                option =input("Complete! What else would you like to do today? \n1.add multiple students\n2.add single student\n3.\
+                    add course \n4. print student transcript\n5. get student stats\n6. Exit ")
+            elif(option == '6'):
+                print(umd)
+            elif(option == '7'):  
+                pass          
+        if(option =='8' ):
             print("Goodbye!")
         
    
