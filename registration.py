@@ -91,9 +91,17 @@ class School:
             else:
                 four += 1
                 
-        df = pd.DataFrame({'GPA':['0.0', '1.0', '2.0', '3.0', '4.0'], 
-                           'num_students':[zero, one, two, three, four]})
-        df.plot.bar(x = 'GPA', y = 'num_students', rot = 0)
+        data = {'0.0':zero, '1.0':one, '2.0':two, '3.0':three, '4.0': four}
+        x = list(data.keys())
+        y = list(data.values())
+        
+        fig = plt.figure(figsize = (10, 5))
+        
+        plt.bar(x, y, color = 'b', width = 0.4)
+        plt.xlabel('GPA')
+        plt.ylabel('Number of Students')
+        plt.title('Student Stats')
+        plt.show()
         ## Rn it only plots a bar graph, I could maybe have it return something
         ## that we can actually use. Lmk what u think.
         #print(df.to_string())
