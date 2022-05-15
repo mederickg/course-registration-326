@@ -69,7 +69,12 @@ class School:
     
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
-        schedule (overall GPA, not course GPA)"""
+        schedule (overall GPA, not course GPA)
+        
+        Args:
+            course (str): String representation of a course consisting of
+            a 4-letter course code followed by the course number
+        """
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
             gpa_lst = [student.gpa for i in range(len(student.schedule)) if 
@@ -100,9 +105,6 @@ class School:
         plt.ylabel('Number of Students')
         plt.title('Student Stats')
         plt.show()
-        ## Rn it only plots a bar graph, I could maybe have it return something
-        ## that we can actually use. Lmk what u think.
-        #print(df.to_string())
     
     def calculate_gpa(student):
        return student.getGpa()
