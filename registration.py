@@ -314,9 +314,9 @@ Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.
                     
                 course = input("Please enter the course code: ")
                 course_num = input("please enter the course number: ")
-                section_num = input("please enter the section number if applicable, else, press enter: ")
                 
-                umd.student_stats(f"{course}{course_num}{section_num}")
+                
+                umd.student_stats(f"{course}{course_num}")
                 
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
 Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit") 
