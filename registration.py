@@ -186,6 +186,7 @@ class Student():
     def get_grade(self,course,grade):
         self.grades[str(course)] = grade
         
+        
     def print_schedule(self):   
         print(self.schedule.to_string())
         
