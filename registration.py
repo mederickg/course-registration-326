@@ -5,6 +5,7 @@ import re
 from argparse import ArgumentParser
 import sys
 from matplotlib import pyplot as plt
+import math
 
 class School:
     
@@ -68,18 +69,20 @@ class School:
     
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
-        schedule (overall GPA, not course GPA)"""
+        schedule
+        
+        Args:
+            course (str): String representation of a course consisting of
+            a 4-letter course code followed by the course number
+        """
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
-            gpa_lst = [student.gpa for i in student.schedule.index if 
-             (student.schedule['Prefix'][i] + 
-              student.schedule['Course number'][i] + 
-              student.schedule['Section number'][i]) == course]
+            gpa_lst = [student.gpa for i in range(len(student.schedule)) if 
+             (student.schedule['Prefix'].iloc[i] + 
+              str(student.schedule['Course number'].iloc[i])) == course]
         
         for gpa in gpa_lst:
-            str(gpa)
-            dot = gpa.find('.')
-            simple_gpa = int(gpa[dot - 1])
+            simple_gpa = math.floor(gpa)
             if simple_gpa == 0:
                 zero += 1
             elif simple_gpa == 1:
@@ -102,9 +105,6 @@ class School:
         plt.ylabel('Number of Students')
         plt.title('Student Stats')
         plt.show()
-        ## Rn it only plots a bar graph, I could maybe have it return something
-        ## that we can actually use. Lmk what u think.
-        #print(df.to_string())
     
     def calculate_gpa(student):
        return student.getGpa()
@@ -166,7 +166,6 @@ class Student():
        entry = self.course_db[combined_filter]
        
        if entry.loc[entry.index[0],"Credits needed"] > self.credits:
-           #return ValueError("Have not met credit requirements")
            print("you do not have enough credits for this class.")
        else:
             self.schedule = pd.concat([self.schedule,entry])
