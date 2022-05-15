@@ -5,6 +5,7 @@ import re
 from argparse import ArgumentParser
 import sys
 from matplotlib import pyplot as plt
+import math
 
 class School:
     
@@ -71,15 +72,12 @@ class School:
         schedule (overall GPA, not course GPA)"""
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
-            gpa_lst = [student.gpa for i in student.schedule.index if 
-             (student.schedule['Prefix'][i] + 
-              student.schedule['Course number'][i] + 
-              student.schedule['Section number'][i]) == course]
+            gpa_lst = [student.gpa for i in range(len(student.schedule)) if 
+             (student.schedule['Prefix'].iloc[i] + 
+              str(student.schedule['Course number'].iloc[i])) == course]
         
         for gpa in gpa_lst:
-            str(gpa)
-            dot = gpa.find('.')
-            simple_gpa = int(gpa[dot - 1])
+            simple_gpa = math.floor(gpa)
             if simple_gpa == 0:
                 zero += 1
             elif simple_gpa == 1:
