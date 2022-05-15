@@ -75,12 +75,14 @@ class School:
             course (str): String representation of a course consisting of
             a 4-letter course code followed by the course number
         """
+        
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
+            print(student.gpa)
             gpa_lst = [student.gpa for i in range(len(student.schedule)) if 
              (student.schedule['Prefix'].iloc[i] + 
               str(student.schedule['Course number'].iloc[i])) == course]
-        
+        print(gpa_lst)
         for gpa in gpa_lst:
             simple_gpa = math.floor(gpa)
             if simple_gpa == 0:
@@ -111,19 +113,8 @@ class School:
     
     def give_grade(self,student,course,grade):
         student.get_grade(course,grade)
-    
-    def get_gpa(student):
-        GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0}
-    
-        keys = student.grades.keys
-        gpa = 0
-        counter=0
-        
-        for key in keys:
-            gpa+= GPAS[student.grades[key]]
-            counter+=1
-        
-        return gpa/counter    
+
+       
     def add_course(self,df):
         self.courses=pd.concat([self.courses,df])
                 
@@ -184,10 +175,24 @@ class Student():
     
     def get_grade(self,course,grade):
         self.grades[str(course)] = grade
+        self.gpa =self.get_gpa
         
         
     def print_schedule(self):   
         print(self.schedule.to_string())
+        
+    def get_gpa(self):
+        GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0}
+    
+        keys = self.grades.keys
+        gpa = 0
+        counter=0
+        
+        for key in keys:
+            gpa+= GPAS[self.grades[key]]
+            counter+=1
+        
+        return gpa/counter    
         
             
     
