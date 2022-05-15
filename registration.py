@@ -69,7 +69,7 @@ class School:
     
     def student_stats(self, course):
         """Graphs the GPA of all students that have the argument course in their
-        schedule (overall GPA, not course GPA)
+        schedule
         
         Args:
             course (str): String representation of a course consisting of
