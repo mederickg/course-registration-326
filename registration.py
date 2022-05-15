@@ -164,7 +164,6 @@ class Student():
        entry = self.course_db[combined_filter]
        
        if entry.loc[entry.index[0],"Credits needed"] > self.credits:
-           #return ValueError("Have not met credit requirements")
            print("you do not have enough credits for this class.")
        else:
             self.schedule = pd.concat([self.schedule,entry])
