@@ -183,8 +183,18 @@ class Student():
         
     def get_gpa(self):
         GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0}
+        
+        total = 0
+        counter = 0
+        for keys in self.grades:
+            total += GPAS[self.grades[keys]]
+            counter += 1
+        print(self.grades[keys])
+        print(GPAS[self.grades[keys]])
+        print(type(GPAS[self.grades[keys]]))
+        print(total/counter)
     
-        keys = self.grades.keys
+        """keys = self.grades.keys
         gpa = 0
         counter=0
         
@@ -192,7 +202,7 @@ class Student():
             gpa+= GPAS[self.grades[key]]
             counter+=1
         
-        return gpa/counter    
+        return gpa/counter"""    
         
             
     
