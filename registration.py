@@ -19,7 +19,7 @@ class School:
             faculty (list): list of faculty members
         """
         self.students= []
-        self.studentsdict = {str:Student}
+        self.studentsdict = {}
         self.courses= pd.DataFrame(pd.read_csv(courses))
     
     def add_course(self, course):
@@ -78,14 +78,13 @@ class School:
         
         zero, one, two, three, four = 0, 0, 0, 0, 0
         for student in self.students:
-            print(student.gpa)
             gpa_lst = [student.gpa for i in range(len(student.schedule)) if 
              (student.schedule['Prefix'].iloc[i] + 
               str(student.schedule['Course number'].iloc[i])) == course]
-        print(gpa_lst)
+            
         for gpa in gpa_lst:
             simple_gpa = math.floor(gpa)
-            if simple_gpa == 0:
+            if int(simple_gpa) == 0:
                 zero += 1
             elif simple_gpa == 1:
                 one += 1
@@ -96,7 +95,7 @@ class School:
             else:
                 four += 1
                 
-        data = {'0.0':zero, '1.0':one, '2.0':two, '3.0':three, '4.0': four}
+        data = {'0.0':zero, '1.0':one, '2.0':two, '3.0':three, '4.0':four}
         x = list(data.keys())
         y = list(data.values())
         
@@ -106,7 +105,8 @@ class School:
         plt.xlabel('GPA')
         plt.ylabel('Number of Students')
         plt.title('Student Stats')
-        plt.show()
+        #plt.show()
+        print(gpa_lst)
     
     def calculate_gpa(student):
        return student.getGpa()
@@ -142,7 +142,7 @@ class Student():
         self.age = int(age)
         self.year = int(year)
         self.credits = int(credits)
-        self.grades = {str:str}
+        self.grades = {}
         self.gpa = 0.00
         self.schedule = pd.DataFrame()
         self.course_db = courses
@@ -175,7 +175,7 @@ class Student():
     
     def get_grade(self,course,grade):
         self.grades[str(course)] = grade
-        self.gpa =self.get_gpa
+        self.gpa = self.get_gpa()
         
         
     def print_schedule(self):   
@@ -187,12 +187,10 @@ class Student():
         total = 0
         counter = 0
         for keys in self.grades:
-            total += GPAS[self.grades[keys]]
+            total += GPAS.get(self.grades[keys])
             counter += 1
-        print(self.grades[keys])
-        print(GPAS[self.grades[keys]])
-        print(type(GPAS[self.grades[keys]]))
-        print(total/counter)
+            
+        return total/counter
     
         """keys = self.grades.keys
         gpa = 0
