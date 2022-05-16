@@ -120,8 +120,12 @@ class School:
                 
     def class_rankings(self):
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
-        class_ranking =sorted(self.gpa, reverse = True, key = lambda g : g [0])
-        print(f"The top five students with the highest GPA starting from greatest to least are {class_ranking}.")
+        class_ranking =sorted(self.students, reverse = True, key = lambda Student : Student.gpa)
+        top_5 =[]
+        counter = 0
+        
+        while(counter<5):
+            print(f"The top five students with the highest GPA starting from greatest to least are {class_ranking}.")
     
     def __str__(self):
         """prints the informal representaion of the School object
