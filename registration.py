@@ -38,8 +38,9 @@ class School:
         """
         pattern = r"^(\S+\s\S+), (\d+), (\d+), (\d+)$"
         searched = re.search(pattern, line.strip())
-        self.students.append(Student(searched.group(1), searched.group(2), searched.group(3), searched.group(4), self.courses))
-        self.studentsdict[searched.group(1)] = Student(searched.group(1), searched.group(2), searched.group(3), searched.group(4), self.courses)   
+        student = Student(searched.group(1), searched.group(2), searched.group(3), searched.group(4), self.courses)
+        self.students.append(student)
+        self.studentsdict[searched.group(1)] = student
         
     def addMultipleStudents(self, path):
         """allows users to use a txt file containing multiple students, and add them in mass to the School.students list
@@ -63,24 +64,20 @@ class School:
         """
         self.students.append(Student(name, age, year,credits))
     
-    def print_grades(self, Student= None):
+    def print_grades(self, student= None):
         generic_schedule = "Credits = 0, Grade = N/A"
-        print(generic_schedule) if Student.istype(None) else print(Student.get_grades())
+        print(generic_schedule) if student==(None) else student.get_grades()
     
-    def student_stats(self, course):
-        """Graphs the GPA of all students that have the argument course in their
-        schedule
+    def student_stats(self):
+        """Graphs the GPA of all students enrolled at the school
         
-        Args:
-            course (str): String representation of a course consisting of
-            a 4-letter course code followed by the course number
+    
         """
         
         zero, one, two, three, four = 0, 0, 0, 0, 0
+        gpa_lst=[]
         for student in self.students:
-            gpa_lst = [student.gpa for i in range(len(student.schedule)) if 
-             (student.schedule['Prefix'].iloc[i] + 
-              str(student.schedule['Course number'].iloc[i])) == course]
+            gpa_lst.append(student.gpa)
             
         for gpa in gpa_lst:
             simple_gpa = math.floor(gpa)
@@ -105,8 +102,8 @@ class School:
         plt.xlabel('GPA')
         plt.ylabel('Number of Students')
         plt.title('Student Stats')
-        #plt.show()
-        print(gpa_lst)
+        plt.show()
+        
     
     def calculate_gpa(student):
        return student.getGpa()
@@ -120,8 +117,7 @@ class School:
                 
     def class_rankings(self):
         """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
-        class_ranking =sorted(self.gpa, reverse = True, key = lambda g : g [0])
-        print(f"The top five students with the highest GPA starting from greatest to least are {class_ranking}.")
+       
     
     def __str__(self):
         """prints the informal representaion of the School object
@@ -177,6 +173,11 @@ class Student():
         self.grades[str(course)] = grade
         self.gpa = self.get_gpa()
         
+    def get_grades(self):
+        
+        for grade in self.grades:
+            print(f"{grade}: {self.grades[grade]}")
+               
         
     def print_schedule(self):   
         print(self.schedule.to_string())
@@ -271,9 +272,9 @@ if __name__ == "__main__":
         
     else:
         option =input("What would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit")
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")
         
-        while(option!='8'):
+        while(option!='9'):
             
             
             
@@ -283,7 +284,7 @@ Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.
                 umd.addMultipleStudents(input)
                 
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit") 
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")  
                 
             elif(option == '2'):
                 name = input("Please enter the student name:")
@@ -293,7 +294,7 @@ Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.
                 umd.addStudent(name,age,year)
                 
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit")          
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")        
             elif(option == '3'):
                 df = pd.DataFrame(columns=["Prefix","Course number","Section number","Course name","Times","Instructor","Building","Credits needed"])
                 prefix  = input("Enter course Prefix: ")
@@ -311,46 +312,46 @@ Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.
                 df = df.append(dict,ignore_index=True)
                 umd.add_course(df)
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit") 
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")  
                 
             elif(option == '4'):
                 name = input("please enter the student: ")
                 
                 umd.print_grades(umd.studentsdict[name])
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit") 
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")  
                 
             elif(option == '5'):
                 
-                print(umd.courses.to_string())
-                print("\n")
-                    
-                course = input("Please enter the course code: ")
-                course_num = input("please enter the course number: ")
+                print("Here is a graph of the GPA distribution of the school students currently enrolled. To continue, please close the graph window.")
                 
                 
-                umd.student_stats(f"{course}{course_num}")
+                umd.student_stats()
                 
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit") 
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")  
             elif(option == '6'):
                 print(umd)
                 
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit")   
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")  
             elif(option == '7'):  
                 print(umd.courses.to_string())
                 print("\n")
                 
-                student = input("Please enter the student name to give a grade") 
+                student = input("Please enter the student name to give a grade: ") 
                 prefix = input("Please enter the course prefix: ")
-                course_num = input("Please enter the course number")
-                grade = input("please enter the grade you wish to give the student")
+                course_num = input("Please enter the course number: ")
+                grade = input("please enter the grade you wish to give the student: ")
                 umd.give_grade(umd.studentsdict[student],f"{prefix}{course_num}",str(grade))  
                 
                 option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
-Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Exit")  
-        if(option =='8' ):
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")
+            elif(option == '8'):
+                umd.class_rankings()
+                option =input("Complete! What else would you like to do today? \n1.Add multiple students\n2.Add single student\n3.\
+Add course \n4.Print student transcript\n5.get student stats\n6.School stats\n7.Give grade\n8.Top five students\n9.Exit")  
+        if(option =='9' ):
             print("Goodbye!")
         
    
