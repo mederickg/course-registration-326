@@ -104,7 +104,7 @@ class School:
         
     
     def calculate_gpa(student):
-       return student.getGpa()
+       return student.get_gpa()
     
     def give_grade(self,student,course,grade):
         student.get_grade(course,grade)
