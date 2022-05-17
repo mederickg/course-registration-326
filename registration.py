@@ -150,7 +150,14 @@ class Student():
         self.course_db = courses
      
     def add(self,prefix,course_num,section_num): 
-       """Adds course to student schedule given they meet credit/time requirements"""
+       """Adds course to student schedule given they meet credit/time requirements
+       Args:
+            prefix (string): Four-letter string abbreviation of the course department
+            course_num (int): The course number
+            section_num (int): The section number
+        Side effects:
+            Adds row to schedule attribute
+            """
        pfx_filt =  self.course_db["Prefix"] == prefix 
        course_num_filt = self.course_db["Course number"] == course_num 
        sec_num_filt = self.course_db["Section number"] == section_num
