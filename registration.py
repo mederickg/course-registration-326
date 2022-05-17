@@ -70,8 +70,6 @@ class School:
     
     def student_stats(self):
         """Graphs the GPA of all students enrolled at the school
-        
-    
         """
         
         zero, one, two, three, four = 0, 0, 0, 0, 0
@@ -128,7 +126,7 @@ class School:
         print(f"The top five students with the highest GPA starting from greatest to least are {top_5}.")
     
     def __str__(self):
-        """prints the informal representaion of the School object
+        """Prints the informal representaion of the School object
         """
         return(f"This school has {len(self.students)} students and offers {len(self.courses)} courses.")
         
@@ -168,7 +166,16 @@ class Student():
             self.schedule = self.schedule.drop(columns=['Credits needed'])
        
     def drop(self,prefix,course_num):
-        """drops course from student schedule"""
+        """Drops course from student schedule.
+        
+        Args:
+            prefix (string): Four-letter string abbreviation of the course
+            department.
+            course_num (int): The course number.
+            
+        Side effects:
+            Removes a row from the schedule attribute.
+            """
         pfx_filt =  self.course_db["Prefix"] == prefix 
         course_num_filt = self.course_db["Course number"] == course_num 
         combined_filt = pfx_filt & course_num_filt
