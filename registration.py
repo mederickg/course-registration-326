@@ -65,6 +65,12 @@ class School:
         self.students.append(Student(name, age, year,credits))
     
     def print_grades(self, student= None):
+        """prints out student grades. If student does not have grades it prints out a generic schedule for the student
+       Args:
+            student (string): represents a student that is set to none
+        Side effects:
+            prints out a student grades if no grades gives student a generic schedule
+            """
         generic_schedule = "Credits = 0, Grade = N/A"
         print(generic_schedule) if student==(None) else student.get_grades()
     
@@ -112,9 +118,15 @@ class School:
        
     def add_course(self,df):
         self.courses=pd.concat([self.courses,df])
+        
                 
     def class_rankings(self):
-        """prints the 5 highest ranked students in the class, based on gpa, returns sorted list of the students based on gpa,descending"""
+        """ Prints the students class rankings in order from greatest to least
+       Args:
+            self(intializer): Represents and instance used in the code
+        Side effects:
+            prints out class ranking
+            """
         class_ranking =sorted(self.students, reverse = True, key = lambda Student : Student.gpa)
         top_5 =[]
         counter = 0
