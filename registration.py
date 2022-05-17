@@ -150,7 +150,7 @@ class Student():
         self.course_db = courses
      
     def add(self,prefix,course_num,section_num): 
-       """Adds course to student schedule given they meet credit/time requirements
+       """Adds course to student schedule given they meet credit requirements
        Args:
             prefix (string): Four-letter string abbreviation of the course department
             course_num (int): The course number
