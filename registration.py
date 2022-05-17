@@ -205,6 +205,11 @@ class Student():
         print(self.schedule.to_string())
         
     def get_gpa(self):
+        """Calculates a students GPA based on their grades
+        
+            Returns:
+                int: GPA value
+            """
         GPAS = {'A': 4.0,'B':3.0,'C':2.0,'D':1.0}
         
         total = 0
