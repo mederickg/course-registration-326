@@ -1,5 +1,3 @@
-
-import string
 import pandas as pd 
 import re
 from argparse import ArgumentParser
@@ -231,16 +229,6 @@ class Student():
             counter += 1
             
         return total/counter
-    
-        """keys = self.grades.keys
-        gpa = 0
-        counter=0
-        
-        for key in keys:
-            gpa+= GPAS[self.grades[key]]
-            counter+=1
-        
-        return gpa/counter"""    
         
             
     
@@ -257,7 +245,6 @@ def parse_args(arglist):
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     
-    ##for now, specialized for the demo
     
     umd = School(args.courses)
     umd.addMultipleStudents(args.students)
