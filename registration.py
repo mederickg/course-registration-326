@@ -74,6 +74,8 @@ class School:
     
     def student_stats(self):
         """Graphs the GPA of all students enrolled at the school
+        
+            Side Effects: displays a plot of studnets gpa in a seperate window
         """
         
         zero, one, two, three, four = 0, 0, 0, 0, 0
@@ -108,13 +110,28 @@ class School:
         
     
     def calculate_gpa(student):
+       """calls student gpa method
+        
+            Returns: results of method call"""
        return student.get_gpa()
     
     def give_grade(self,student,course,grade):
+        """calls student method to recieve a grade based on user prompts
+
+            Args: student(Student): student object of which grade will be given
+                course(String): course student recieves grade in
+                grade(String) : grade to be assigned
+        """
         student.get_grade(course,grade)
 
        
     def add_course(self,df):
+        """Adds a new course to the school courses dataframe based on dataframe build from user prompts
+        
+            Args: df(dataframe):dataframe containing the new course information to be concatenated
+            
+            Side effects: courses attribute is ubdated with a new course 
+            """
         self.courses=pd.concat([self.courses,df])
         
                 
@@ -202,16 +219,29 @@ class Student():
         self.schedule = self.schedule.drop([drop_val], axis = 0)
     
     def get_grade(self,course,grade):
+        """Student side: called by school to assign a grade to the students grade dictionary. When added, recalculates gpa accordingly
+
+            Args: 
+            Course (string): the course string which acts as a key for the dictionary
+            
+            Grade: (String): course grade, value in the grades dictionary 
+            
+            Side effects: student gpa is adjusted """
         self.grades[str(course)] = grade
         self.gpa = self.get_gpa()
         
     def get_grades(self):
+        """Prints a formatted string of a students grades in classes which they have grades in
         
+            Side effect: prints our student grades from grades dictionary to the terminal"""
         for grade in self.grades:
             print(f"{grade}: {self.grades[grade]}")
                
         
     def print_schedule(self):   
+        """prints student schedule to console 
+        
+            Side effects: Prints schedule to console"""
         print(self.schedule.to_string())
         
     def get_gpa(self):
@@ -234,7 +264,7 @@ class Student():
     
    
 def parse_args(arglist):
-    
+    """Processes command line arguments for the files loaded"""
     parser = ArgumentParser("get filepaths to initiate the school program")
     parser.add_argument("students", help="filepath to a file containing students enrolled in the school") 
     parser.add_argument("courses",help = "filepath to a file containing the courses held at the school")
@@ -243,6 +273,9 @@ def parse_args(arglist):
     return args  
      
 if __name__ == "__main__":
+    """Driver of the program, presents menus to the user and allows them to flow through the method use cases
+    
+        Side effects: Prints to teerminal the results of methods, dataframes, or prompts dynamically based on user input"""
     args = parse_args(sys.argv[1:])
     
     
